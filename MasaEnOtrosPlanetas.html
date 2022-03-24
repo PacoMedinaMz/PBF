@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masa en Otros Planetas</title>
+    <style>
+        body{
+            background-color: #87CEEB;
+        }
+        p{
+            font-size: 22px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+    <script>
+        console.log('Hola');
+        let masa = prompt('Cuál es tu masa en la tierra? ');
+        console.log(masa);
+        let planeta = prompt('Ingresa un planeta? (Marte/Jupiter)');
+        console.log(planeta.toLowerCase());
+        let res = 0;
+        let pla = '';
+        if(planeta.toLowerCase() == 'marte'){
+            res = masa * 3.72 / 9.81;
+            pla = 'Marte';
+            
+        }else if(planeta.toLowerCase() == 'jupiter'){
+            res = masa * 24.79 / 9.81;
+            pla = 'Jupiter';
+        }else{
+            document.write('<p>No tenemos esa función</p>');
+        }
+        document.write('<p>Tu masa en ' + pla + ' es de: '+ res.toFixed(2) + ' </p>');
+    </script>
+</head>
+<body>
+    
+    
+</body>
+</html>
