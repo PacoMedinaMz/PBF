@@ -1,6 +1,14 @@
 "use strict";
 
 let op = prompt("Ingresa un numero del 1 al 4: ", 1);
+let teclas = {
+  UP: 38,
+  DOWN: 40,
+  LEFT: 37,
+  RIGHT: 39
+};
+let x = 225;
+let y = 225;
 
 console.log("op: ", op);
 switch (op) {
@@ -28,7 +36,7 @@ function dibujo() {
   let ctx = c.getContext("2d");
   const nLineas = 45;
   let xi, yi, xf, yf;
-  let colorsito = "skyblue";
+  const colorsito = "skyblue";
 
   for (let l = 0; l < nLineas; l++) {
     yf = yi = 10 * l;
@@ -65,7 +73,7 @@ function dibujoInput() {
   let c = document.getElementById("lienzo");
   let ctx = c.getContext("2d");
   let xi, yi, xf, yf;
-  let colorsito = "skyblue";
+  const colorsito = "skyblue";
 
   for (let l = 0; l < nLineas; l++) {
     yf = yi = 10 * l;
@@ -79,6 +87,34 @@ function dibujoInput() {
 }
 
 function dibujoTeclado() {
-  console.log("++++");
   document.getElementById("title").innerHTML = "¡Mueve las fechas del teclado!";
+  document.addEventListener("keydown", dibujarTeclado);
+  console.log('Hola');
+}
+
+function dibujarTeclado(evento){
+  console.log('F');
+  let c = document.getElementById("lienzo");
+  let ctx = c.getContext("2d");
+  let color = "skyblue";
+  const movimiento = 5;
+
+  switch(evento.keyCode){
+    case teclas.UP:
+      dibujarLinea(color, x, y, x, y - movimiento, ctx);
+      y -= movimiento;
+    break;
+    case teclas.DOWN:
+      dibujarLinea(color, x, y, x, y + movimiento, ctx);
+      y += movimiento;
+    break;
+    case teclas.LEFT:
+      dibujarLinea(color, x, y, x - movimiento, y, ctx);
+      x -= movimiento;
+    break;
+    case teclas.RIGHT:
+      dibujarLinea(color, x, y, x + movimiento, y, ctx);
+      x += movimiento;
+    break;
+  }
 }
