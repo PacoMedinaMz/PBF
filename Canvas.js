@@ -1,14 +1,15 @@
 "use strict";
 
-let op = prompt("Ingresa un numero del 1 al 4: ", 1);
+let op = prompt("Ingresa un numero del 1 al 3: ", 1);
 let teclas = {
   UP: 38,
   DOWN: 40,
   LEFT: 37,
-  RIGHT: 39
+  RIGHT: 39,
 };
 let x = 225;
 let y = 225;
+let mouse = false;
 
 console.log("op: ", op);
 switch (op) {
@@ -16,12 +17,9 @@ switch (op) {
     dibujo();
     break;
   case "2":
-    dibujoMouse();
-    break;
-  case "3":
     dibujoInput();
     break;
-  case "4":
+  case "3":
     dibujoTeclado();
     break;
   default:
@@ -52,15 +50,11 @@ function dibujo() {
 function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo) {
   lienzo.beginPath();
   lienzo.strokeStyle = color;
+  lienzo.lineWidth = 1.5;
   lienzo.moveTo(xinicial, yinicial);
   lienzo.lineTo(xfinal, yfinal);
   lienzo.stroke();
   lienzo.closePath();
-}
-
-function dibujoMouse() {
-  console.log("++");
-  document.getElementById("title").innerHTML = "¡Mueve el mouse!";
 }
 
 function dibujoInput() {
@@ -89,32 +83,30 @@ function dibujoInput() {
 function dibujoTeclado() {
   document.getElementById("title").innerHTML = "¡Mueve las fechas del teclado!";
   document.addEventListener("keydown", dibujarTeclado);
-  console.log('Hola');
 }
 
-function dibujarTeclado(evento){
-  console.log('F');
+function dibujarTeclado(evento) {
   let c = document.getElementById("lienzo");
   let ctx = c.getContext("2d");
   let color = "skyblue";
   const movimiento = 5;
 
-  switch(evento.keyCode){
+  switch (evento.keyCode) {
     case teclas.UP:
       dibujarLinea(color, x, y, x, y - movimiento, ctx);
       y -= movimiento;
-    break;
+      break;
     case teclas.DOWN:
       dibujarLinea(color, x, y, x, y + movimiento, ctx);
       y += movimiento;
-    break;
+      break;
     case teclas.LEFT:
       dibujarLinea(color, x, y, x - movimiento, y, ctx);
       x -= movimiento;
-    break;
+      break;
     case teclas.RIGHT:
       dibujarLinea(color, x, y, x + movimiento, y, ctx);
       x += movimiento;
-    break;
+      break;
   }
 }
